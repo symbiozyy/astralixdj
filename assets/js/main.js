@@ -9,9 +9,9 @@
   };
 
   /* ---------- Música do site ----------
-     Trilha: OxyFlux & Shadow Shaman — Monkey's Wedding (Perceptionz VA, Psynopticz Records).
+     Trilha: Avalon & Volcano — Good Twist.
      Para trocar, substitua o arquivo em assets/audio/ e ajuste MUSIC_SRC. */
-  const MUSIC_SRC = "assets/audio/monkeys-wedding.mp3";
+  const MUSIC_SRC = "assets/audio/good-twist.mp3";
   const MUSIC_VOLUME = 0.7; // 0–1
   const FADE_MS = 1400;
   const soundBtn = $("#soundBtn");
