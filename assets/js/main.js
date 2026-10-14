@@ -9,48 +9,66 @@
   };
 
   /* ---------- Música do site ----------
-     Para trocar a faixa, cole aqui o link do SoundCloud. */
-  const MUSIC_URL = "https://on.soundcloud.com/lcOaj05E6kquPrrpvT";
-  const MUSIC_VOLUME = 70; // 0–100
+     Trilha: OxyFlux & Shadow Shaman — Monkey's Wedding (Perceptionz VA, Psynopticz Records).
+     Para trocar, substitua o arquivo em assets/audio/ e ajuste MUSIC_SRC. */
+  const MUSIC_SRC = "assets/audio/monkeys-wedding.mp3";
+  const MUSIC_VOLUME = 0.7; // 0–1
   const FADE_MS = 1400;
   const soundBtn = $("#soundBtn");
   const music = (() => {
-    const iframe = $("#scPlayer");
-    let widget = null, ready = false, wanted = false, ducked = false, vol = 0, raf = 0, playing = false;
-    const fade = (to, then) => {
+    const audio = new Audio(MUSIC_SRC);
+    audio.loop = true;
+    audio.preload = "none";
+    let ctx = null, gain = null, wanted = false, ducked = false, pauseTimer = 0, raf = 0;
+
+    // Web Audio permite fade também no iOS, onde audio.volume é somente leitura
+    const setupGraph = () => {
+      if (ctx) return;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      try {
+        ctx = new AC();
+        gain = ctx.createGain();
+        gain.gain.value = 0;
+        ctx.createMediaElementSource(audio).connect(gain).connect(ctx.destination);
+      } catch { ctx = gain = null; }
+    };
+    const ramp = (to) => {
+      if (gain) {
+        const t = ctx.currentTime, g = gain.gain;
+        g.cancelScheduledValues(t);
+        g.setValueAtTime(g.value, t);
+        g.linearRampToValueAtTime(to, t + FADE_MS / 1000);
+        return;
+      }
       cancelAnimationFrame(raf);
-      const from = vol, t0 = performance.now();
-      const step = (t) => {
-        const k = Math.min(1, (t - t0) / FADE_MS);
-        vol = from + (to - from) * k;
-        widget.setVolume(Math.round(vol));
+      const from = audio.volume, t0 = performance.now();
+      const step = (now) => {
+        const k = Math.min(1, (now - t0) / FADE_MS);
+        audio.volume = from + (to - from) * k;
         if (k < 1) raf = requestAnimationFrame(step);
-        else then?.();
       };
       raf = requestAnimationFrame(step);
     };
     const sync = () => {
       soundBtn.setAttribute("aria-pressed", String(wanted));
-      if (!ready) return;
+      clearTimeout(pauseTimer);
       if (wanted && !ducked) {
-        if (!playing) { widget.setVolume(Math.round(vol)); widget.play(); playing = true; }
-        fade(MUSIC_VOLUME);
-      } else if (playing) {
-        fade(0, () => { widget.pause(); playing = false; });
+        if (!gain && audio.paused) audio.volume = 0;
+        ctx?.resume();
+        audio.play().then(() => ramp(MUSIC_VOLUME)).catch(() => {
+          wanted = false;
+          soundBtn.setAttribute("aria-pressed", "false");
+        });
+      } else if (!audio.paused) {
+        ramp(0);
+        pauseTimer = setTimeout(() => audio.pause(), FADE_MS + 50);
       }
     };
-    if (window.SC && iframe) {
-      iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(MUSIC_URL) +
-        "&auto_play=false&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false";
-      widget = SC.Widget(iframe);
-      widget.bind(SC.Widget.Events.READY, () => { ready = true; widget.setVolume(0); sync(); });
-      widget.bind(SC.Widget.Events.FINISH, () => { widget.seekTo(0); widget.play(); });
-    } else {
-      soundBtn.hidden = true;
-    }
     return {
-      start() { wanted = true; sync(); },
-      toggle() { wanted = !wanted; sync(); },
+      // chamados a partir de um clique, então o navegador libera o áudio
+      start() { setupGraph(); wanted = true; sync(); },
+      toggle() { setupGraph(); wanted = !wanted; sync(); },
       duck(on) { if (ducked !== on) { ducked = on; sync(); } },
     };
   })();
