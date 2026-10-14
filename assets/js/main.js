@@ -216,6 +216,9 @@
     status.textContent = ok
       ? (lang === "en" ? "Request copied! Paste it in the agency's DM." : "Pedido copiado! Cole no direct da agência.")
       : (lang === "en" ? "Opening Instagram — send your details in the DM." : "Abrindo o Instagram — envie seus dados no direct.");
+    const link = Object.assign(document.createElement("a"), { href: AGENCY, target: "_blank", rel: "noopener", textContent: lang === "en" ? " Open Echoes of Gaia →" : " Abrir Echoes of Gaia →" });
+    link.style.cssText = "color: var(--gold); text-decoration: underline";
+    status.append(link);
     window.open(AGENCY, "_blank", "noopener");
   });
   $$("input, textarea", form).forEach((f) => f.addEventListener("input", () => f.classList.remove("is-invalid")));
