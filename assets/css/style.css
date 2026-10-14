@@ -80,7 +80,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .intro__sigil { width: 132px; height: 132px; animation: spin 2.6s var(--ease) infinite; filter: drop-shadow(0 0 30px rgba(214,189,79,.35)); }
 .intro__word { font: 300 12px/1 var(--f-display); letter-spacing: .8em; color: var(--gold); padding-left: .8em; }
-.is-loaded .intro { opacity: 0; visibility: hidden; }
+.is-loaded .intro, .no-js .intro { opacity: 0; visibility: hidden; }
+.intro__actions { display: grid; justify-items: center; gap: 14px; margin-top: 26px; opacity: 0; animation: fadeUp 1s var(--ease) .6s forwards; }
+.intro__mute { font: 500 11px/1 var(--f-display); letter-spacing: .24em; text-transform: uppercase; color: var(--muted); padding: 8px; transition: color .3s; }
+.intro__mute:hover { color: var(--text); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Música ---------- */
+.music-player { position: fixed; left: -9999px; top: 0; width: 300px; height: 166px; overflow: hidden; pointer-events: none; }
+.music-player iframe { width: 100%; height: 100%; border: 0; }
+.sound { display: flex; align-items: center; justify-content: center; gap: 3px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; }
+.sound span { width: 2px; height: 4px; border-radius: 2px; background: var(--muted); transition: background .3s, height .3s; }
+.sound[aria-pressed="true"] span { background: var(--gold); animation: eq 1s ease-in-out infinite; }
+.sound[aria-pressed="true"] span:nth-child(2) { animation-delay: -.3s; }
+.sound[aria-pressed="true"] span:nth-child(3) { animation-delay: -.6s; }
+.sound[aria-pressed="true"] span:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 16px; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ---------- Navegação ---------- */

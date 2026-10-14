@@ -8,10 +8,62 @@
     set(k, v) { try { localStorage.setItem(k, v); } catch { /* sem storage */ } },
   };
 
-  /* ---------- Intro ---------- */
-  const done = () => document.documentElement.classList.add("is-loaded");
-  addEventListener("load", () => setTimeout(done, reduced ? 0 : 500));
-  setTimeout(done, 2800); // nunca prende o visitante
+  /* ---------- Música do site ----------
+     Para trocar a faixa, cole aqui o link do SoundCloud. */
+  const MUSIC_URL = "https://on.soundcloud.com/lcOaj05E6kquPrrpvT";
+  const MUSIC_VOLUME = 70; // 0–100
+  const FADE_MS = 1400;
+  const soundBtn = $("#soundBtn");
+  const music = (() => {
+    const iframe = $("#scPlayer");
+    let widget = null, ready = false, wanted = false, ducked = false, vol = 0, raf = 0, playing = false;
+    const fade = (to, then) => {
+      cancelAnimationFrame(raf);
+      const from = vol, t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / FADE_MS);
+        vol = from + (to - from) * k;
+        widget.setVolume(Math.round(vol));
+        if (k < 1) raf = requestAnimationFrame(step);
+        else then?.();
+      };
+      raf = requestAnimationFrame(step);
+    };
+    const sync = () => {
+      soundBtn.setAttribute("aria-pressed", String(wanted));
+      if (!ready) return;
+      if (wanted && !ducked) {
+        if (!playing) { widget.setVolume(Math.round(vol)); widget.play(); playing = true; }
+        fade(MUSIC_VOLUME);
+      } else if (playing) {
+        fade(0, () => { widget.pause(); playing = false; });
+      }
+    };
+    if (window.SC && iframe) {
+      iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(MUSIC_URL) +
+        "&auto_play=false&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false";
+      widget = SC.Widget(iframe);
+      widget.bind(SC.Widget.Events.READY, () => { ready = true; widget.setVolume(0); sync(); });
+      widget.bind(SC.Widget.Events.FINISH, () => { widget.seekTo(0); widget.play(); });
+    } else {
+      soundBtn.hidden = true;
+    }
+    return {
+      start() { wanted = true; sync(); },
+      toggle() { wanted = !wanted; sync(); },
+      duck(on) { if (ducked !== on) { ducked = on; sync(); } },
+    };
+  })();
+  soundBtn.addEventListener("click", () => music.toggle());
+
+  /* ---------- Intro: entrar com ou sem som ---------- */
+  const enter = (withSound) => {
+    if (withSound) music.start();
+    document.documentElement.classList.add("is-loaded");
+  };
+  $("#enterSound").addEventListener("click", () => enter(true));
+  $("#enterMute").addEventListener("click", () => enter(false));
+  $("#enterSound").focus({ preventScroll: true });
 
   /* ---------- Navegação ---------- */
   const nav = $("#nav");
@@ -125,7 +177,14 @@
       reels.forEach((r) => { if (r !== reel) $("video", r).pause(); });
     });
     video.addEventListener("ended", () => { reel.classList.remove("is-playing"); video.controls = false; });
+    // Música sai em fade quando um release toca e volta em fade quando ele para
+    ["play", "pause", "ended"].forEach((ev) => video.addEventListener(ev, duckForVideos));
   });
+  let duckTimer = 0;
+  function duckForVideos() {
+    clearTimeout(duckTimer);
+    duckTimer = setTimeout(() => music.duck(reels.some((r) => !$("video", r).paused)), 120);
+  }
 
   /* ---------- Lightbox ---------- */
   const tiles = $$("#masonry .tile");

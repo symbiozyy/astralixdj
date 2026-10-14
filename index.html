@@ -22,10 +22,17 @@
 <body>
 
   <!-- Intro: sigilo -->
-  <div class="intro" id="intro" aria-hidden="true">
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Entrar no site">
     <img src="assets/img/astralix-sigilo.webp" alt="" class="intro__sigil">
     <span class="intro__word">ASTRALIX</span>
+    <div class="intro__actions">
+      <button type="button" class="btn btn--gold intro__enter" id="enterSound" data-en="Enter with sound">Entrar com som</button>
+      <button type="button" class="intro__mute" id="enterMute" data-en="enter without sound">entrar sem som</button>
+    </div>
   </div>
+
+  <!-- Trilha do site (player do SoundCloud controlado via Widget API) -->
+  <div class="music-player" aria-hidden="true"><iframe id="scPlayer" title="Trilha do site" allow="autoplay" tabindex="-1"></iframe></div>
 
   <div class="cursor-glow" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
@@ -45,6 +52,7 @@
       <a href="#booking" class="nav__cta" data-en="Booking">Booking</a>
     </nav>
     <div class="nav__tools">
+      <button class="sound" id="soundBtn" type="button" aria-pressed="false" aria-label="Ligar ou desligar a música"><span></span><span></span><span></span><span></span></button>
       <button class="lang" id="langBtn" type="button" aria-label="Mudar idioma / Change language"><span class="lang__on">PT</span><span>/</span><span class="lang__off">EN</span></button>
       <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
     </div>
@@ -308,6 +316,7 @@
     <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Próxima">›</button>
   </div>
 
+  <script src="https://w.soundcloud.com/player/api.js"></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
