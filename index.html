@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astralix · Full On Night</title>
+  <meta name="description" content="Astralix é o projeto de Full On Night do DJ paulistano Caique Souza. Psytrance intenso, noturno e psicodélico. Booking via Echoes of Gaia.">
+  <meta name="theme-color" content="#07060b">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Astralix · Full On Night">
+  <meta property="og:description" content="Psytrance Full On Night de São Paulo. Booking via Echoes of Gaia.">
+  <meta property="og:image" content="https://symbiozyy.github.io/astralixdj/assets/img/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Manrope:wght@400;500;600&family=Unbounded:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.remove("no-js")</script>
+</head>
+<body>
+
+  <!-- Intro: sigilo -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <img src="assets/img/astralix-sigilo.webp" alt="" class="intro__sigil">
+    <span class="intro__word">ASTRALIX</span>
+  </div>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Navegação -->
+  <header class="nav" id="nav">
+    <a href="#topo" class="nav__brand" aria-label="Astralix — início">
+      <img src="assets/img/astralix-sigilo.webp" alt="" width="34" height="34">
+      <span>Astralix</span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="Principal">
+      <a href="#sobre" data-en="About">Sobre</a>
+      <a href="#release" data-en="Release">Release</a>
+      <a href="#jornada" data-en="Journey">Jornada</a>
+      <a href="#galeria" data-en="Gallery">Galeria</a>
+      <a href="#presskit" data-en="Press kit">Press kit</a>
+      <a href="#booking" class="nav__cta" data-en="Booking">Booking</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="lang" id="langBtn" type="button" aria-label="Mudar idioma / Change language"><span class="lang__on">PT</span><span>/</span><span class="lang__off">EN</span></button>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="topo">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Astralix">
+      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/poster-hero.jpg">
+        <source src="assets/video/hero-loop.mp4" type="video/mp4">
+      </video>
+      <div class="hero__veil"></div>
+      <canvas class="hero__stars" id="stars"></canvas>
+
+      <svg class="mandala" viewBox="0 0 600 600" aria-hidden="true">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f3e28c"/><stop offset=".55" stop-color="#c9ad3e"/><stop offset="1" stop-color="#6f6a1d"/>
+          </linearGradient>
+          <path id="petal" d="M300 300 C 270 230, 270 150, 300 70 C 330 150, 330 230, 300 300 Z"/>
+        </defs>
+        <g fill="none" stroke="url(#gold)" stroke-width="1">
+          <circle cx="300" cy="300" r="290" opacity=".35"/>
+          <circle cx="300" cy="300" r="250" opacity=".55" stroke-dasharray="2 8"/>
+          <circle cx="300" cy="300" r="232" opacity=".25"/>
+          <g class="mandala__petals" opacity=".55">
+            <use href="#petal"/><use href="#petal" transform="rotate(30 300 300)"/><use href="#petal" transform="rotate(60 300 300)"/>
+            <use href="#petal" transform="rotate(90 300 300)"/><use href="#petal" transform="rotate(120 300 300)"/><use href="#petal" transform="rotate(150 300 300)"/>
+            <use href="#petal" transform="rotate(180 300 300)"/><use href="#petal" transform="rotate(210 300 300)"/><use href="#petal" transform="rotate(240 300 300)"/>
+            <use href="#petal" transform="rotate(270 300 300)"/><use href="#petal" transform="rotate(300 300 300)"/><use href="#petal" transform="rotate(330 300 300)"/>
+          </g>
+          <rect x="130" y="130" width="340" height="340" opacity=".3"/>
+          <rect x="130" y="130" width="340" height="340" opacity=".3" transform="rotate(45 300 300)"/>
+        </g>
+      </svg>
+
+      <div class="hero__content">
+        <p class="eyebrow reveal" data-en="Psytrance · São Paulo, Brazil">Psytrance · São Paulo, Brasil</p>
+        <h1 class="hero__title">
+          <img src="assets/img/astralix-logo.png" alt="Astralix" class="hero__logo" width="833" height="526">
+        </h1>
+        <p class="hero__tag reveal"><span class="serif" data-en="for those who dance with their eyes closed.">para quem dança de olhos fechados.</span></p>
+        <p class="hero__genre reveal">FULL ON NIGHT</p>
+        <div class="hero__ctas reveal">
+          <a href="#booking" class="btn btn--gold" data-en="Book Astralix">Contratar Astralix</a>
+          <a href="#release" class="btn btn--ghost" data-en="Watch the release">Assistir ao release</a>
+        </div>
+      </div>
+
+      <a href="#sobre" class="hero__scroll" aria-label="Rolar para baixo"><span></span></a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Full On Night</span><i>✦</i><span>Psytrance</span><i>✦</i><span>São Paulo</span><i>✦</i><span>Echoes of Gaia</span><i>✦</i><span>Jornada Psicodélica</span><i>✦</i>
+        <span>Full On Night</span><i>✦</i><span>Psytrance</span><i>✦</i><span>São Paulo</span><i>✦</i><span>Echoes of Gaia</span><i>✦</i><span>Jornada Psicodélica</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- SOBRE -->
+    <section class="section about" id="sobre">
+      <div class="about__media reveal">
+        <div class="frame tilt">
+          <img src="assets/img/astralix-retrato.jpg" alt="Astralix (Caique Souza) de óculos escuros e corrente dourada" loading="lazy" width="1000" height="1500">
+          <span class="frame__corner frame__corner--tl"></span><span class="frame__corner frame__corner--br"></span>
+        </div>
+        <img src="assets/img/astralix-sigilo.webp" alt="" class="about__sigil" loading="lazy" aria-hidden="true">
+      </div>
+
+      <div class="about__text">
+        <p class="eyebrow reveal" data-en="01 — Release">01 — Release</p>
+        <h2 class="h2 reveal"><span data-en="From the pulse">Do pulso</span><br><em class="serif gold" data-en="to transcendence.">à transcendência.</em></h2>
+
+        <div class="bio">
+          <p class="reveal lead" data-en="Born and raised in São Paulo, <strong>Caique Souza</strong> found psytrance in 2016, on the dancefloor of a festival. The pulsing rhythms, the hypnotic melodies and the psychedelic atmosphere that took over the place changed his relationship with music — and a purpose was born.">
+            Nascido e criado na capital paulista, <strong>Caique Souza</strong> encontrou o psytrance em 2016, na pista de um festival. Os ritmos pulsantes, as melodias hipnóticas e a atmosfera psicodélica que tomava conta do ambiente mudaram sua relação com a música — e ali nasceu um propósito.
+          </p>
+          <p class="reveal" data-en="He dove headfirst into that universe and gave shape to <strong>Astralix</strong>, his Full On Night project. It was a natural choice: the dark, dense and energetic side of Full On lets him build an intense atmosphere on the dancefloor and guide the crowd through a true psychedelic journey.">
+            Mergulhou de cabeça nesse universo e deu forma ao <strong>Astralix</strong>, seu projeto de Full On Night. A escolha foi natural: a vertente noturna, densa e enérgica do Full On permite construir uma atmosfera intensa na pista e conduzir o público por uma verdadeira jornada psicodélica.
+          </p>
+          <p class="reveal" data-en="Restless and always evolving, he sharpened his craft studying mixing at <strong>Studio Leo Casagrande</strong>, deepening his understanding of the art of mixing and of building immersive sets — with narrative, tension and release.">
+            Inquieto e em constante evolução, aperfeiçoou a técnica estudando mixagem no <strong>Studio Leo Casagrande</strong>, onde aprofundou a arte de mixar e de construir sets envolventes — com narrativa, tensão e catarse.
+          </p>
+          <p class="reveal" data-en="In every performance, Astralix seeks a deep connection with the crowd: to carry everyone there into a transcendental state and awaken intense emotions. His mission is to keep sharing his passion for psytrance and spreading the unique energy of the genre at festivals and events across Brazil and the world.">
+            Em cada apresentação, Astralix busca uma conexão profunda com a pista: transportar quem está ali para um estado transcendental e despertar emoções intensas. Seu propósito é seguir compartilhando a paixão pelo psytrance e espalhando a energia única do estilo em festivais e eventos pelo Brasil e pelo mundo.
+          </p>
+        </div>
+
+        <dl class="facts reveal">
+          <div><dt>2016</dt><dd data-en="first encounter with psytrance">primeiro encontro com o psytrance</dd></div>
+          <div><dt>Full On Night</dt><dd data-en="style &amp; identity">vertente &amp; identidade</dd></div>
+          <div><dt>São Paulo</dt><dd data-en="home base · Brazil">base · capital paulista</dd></div>
+          <div><dt>Leo Casagrande</dt><dd data-en="mixing studies">formação em mixagem</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- RELEASE / VÍDEOS -->
+    <section class="section release" id="release">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-en="02 — On the dancefloor">02 — Na pista</p>
+        <h2 class="h2 reveal"><span data-en="See it">Veja</span> <em class="serif uv" data-en="live.">ao vivo.</em></h2>
+        <p class="section__sub reveal" data-en="Recent moments from Astralix behind the decks — night and day, UV and sunlight, always with the crowd in focus.">Registros recentes do Astralix nas pick-ups — de noite e de dia, na luz negra ou no sol, sempre com a pista no centro.</p>
+      </div>
+
+      <div class="reels">
+        <article class="reel reveal">
+          <div class="reel__phone">
+            <video preload="none" playsinline poster="assets/img/poster-pvtrance.jpg" src="assets/video/pvtrance-2025.mp4" aria-label="Vídeo: Astralix no PVTrance 2025"></video>
+            <button class="reel__play" type="button" aria-label="Reproduzir vídeo PVTrance 2025"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="reel__meta">
+            <span class="reel__tag">Night · UV</span>
+            <h3>PVTrance 2025</h3>
+            <p data-en="Full On Night under black light — a dancefloor in trance from the first kick.">Full On Night sob luz negra — pista em transe do primeiro kick ao último drop.</p>
+          </div>
+        </article>
+
+        <article class="reel reel--offset reveal">
+          <div class="reel__phone">
+            <video preload="none" playsinline poster="assets/img/poster-after.jpg" src="assets/video/after-pvt-relampago.mp4" aria-label="Vídeo: Astralix no After PVT Relâmpago"></video>
+            <button class="reel__play" type="button" aria-label="Reproduzir vídeo After PVT Relâmpago"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="reel__meta">
+            <span class="reel__tag">Day · Open air</span>
+            <h3>After PVT · Relâmpago</h3>
+            <p data-en="Daylight open air: the same intensity, now under the sun.">Open air à luz do dia: a mesma intensidade, agora sob o sol.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JORNADA -->
+    <section class="section journey" id="jornada">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-en="03 — The set">03 — O set</p>
+        <h2 class="h2 reveal"><span data-en="A journey in">Uma jornada em</span> <em class="serif gold" data-en="three phases.">três fases.</em></h2>
+      </div>
+      <ol class="phases">
+        <li class="phase reveal">
+          <span class="phase__num">I</span>
+          <h3 data-en="Ignition">Ignição</h3>
+          <p data-en="Driving groove and rolling bass lock the dancefloor in from the very first minute.">Groove marcado e baixo rolante prendem a pista desde o primeiro minuto.</p>
+        </li>
+        <li class="phase reveal">
+          <span class="phase__num">II</span>
+          <h3 data-en="Immersion">Imersão</h3>
+          <p data-en="Psychedelic layers, dark textures and rising tension: the night gets deeper.">Camadas psicodélicas, texturas sombrias e tensão crescente: a noite se aprofunda.</p>
+        </li>
+        <li class="phase reveal">
+          <span class="phase__num">III</span>
+          <h3 data-en="Transcendence">Transcendência</h3>
+          <p data-en="The peak. Collective catharsis — the moment the crowd stops watching and starts traveling.">O pico. Catarse coletiva — o momento em que o público deixa de assistir e passa a viajar.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="section gallery" id="galeria">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-en="04 — Gallery">04 — Galeria</p>
+        <h2 class="h2 reveal"><span data-en="Light, smoke &amp;">Luz, fumaça &amp;</span> <em class="serif uv" data-en="dancefloor.">pista.</em></h2>
+      </div>
+      <div class="masonry" id="masonry">
+        <a href="assets/img/gallery/dj-uv.jpg" class="tile reveal"><img src="assets/img/gallery/dj-uv.jpg" alt="Astralix tocando sob luz negra no PVTrance" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/aerea-tenda.jpg" class="tile reveal"><img src="assets/img/gallery/aerea-tenda.jpg" alt="Vista aérea da tenda do festival" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/pista-uv.jpg" class="tile reveal"><img src="assets/img/gallery/pista-uv.jpg" alt="Público dançando na pista UV" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/dj-bracos.jpg" class="tile reveal"><img src="assets/img/gallery/dj-bracos.jpg" alt="Astralix com os braços abertos no palco" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/astralix-decks.jpg" class="tile reveal"><img src="assets/img/astralix-decks.jpg" alt="Astralix nas pick-ups com fones" loading="lazy" width="425" height="900"></a>
+        <a href="assets/img/gallery/pista-dia.jpg" class="tile reveal"><img src="assets/img/gallery/pista-dia.jpg" alt="Público dançando no open air" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/dj-sorriso.jpg" class="tile reveal"><img src="assets/img/gallery/dj-sorriso.jpg" alt="Astralix sorrindo durante o set" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/tenda-pista.jpg" class="tile reveal"><img src="assets/img/gallery/tenda-pista.jpg" alt="Visão da cabine para a pista" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/dj-dia.jpg" class="tile reveal"><img src="assets/img/gallery/dj-dia.jpg" alt="Astralix tocando de dia" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/pista-sorriso.jpg" class="tile reveal"><img src="assets/img/gallery/pista-sorriso.jpg" alt="Público sorrindo na pista UV" loading="lazy" width="720" height="1280"></a>
+        <a href="assets/img/gallery/dj-palco.jpg" class="tile reveal"><img src="assets/img/gallery/dj-palco.jpg" alt="Astralix de costas no palco olhando a pista" loading="lazy" width="720" height="1280"></a>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="section booking" id="booking">
+      <div class="booking__glow" aria-hidden="true"></div>
+      <div class="section__head">
+        <p class="eyebrow reveal" data-en="05 — Booking &amp; collabs">05 — Booking &amp; collabs</p>
+        <h2 class="h2 reveal"><span data-en="Bring Astralix to">Leve o Astralix para</span> <em class="serif gold" data-en="your dancefloor.">a sua pista.</em></h2>
+      </div>
+
+      <div class="booking__grid">
+        <div class="agency reveal">
+          <p class="agency__label" data-en="Exclusive booking by">Booking exclusivo via</p>
+          <p class="agency__name">Echoes <span class="serif">of</span> Gaia</p>
+          <p class="agency__text" data-en="Festivals, open airs, club nights and afters. Talk to the agency for dates, fees and technical rider.">Festivais, open airs, club nights e afters. Fale com a agência para datas, cachê e rider técnico.</p>
+          <div class="agency__ctas">
+            <a class="btn btn--gold" href="https://instagram.com/echoesofgaia__" target="_blank" rel="noopener" data-en="Talk to Echoes of Gaia">Falar com a Echoes of Gaia</a>
+            <a class="btn btn--ghost" href="https://instagram.com/djastralix" target="_blank" rel="noopener">@djastralix</a>
+          </div>
+          <div class="collab">
+            <h3 data-en="Collabs">Collabs</h3>
+            <p data-en="Producers, DJs, labels and collectives: B2Bs, showcases and joint projects are welcome. Send a DM on Instagram.">Produtores, DJs, labels e coletivos: B2Bs, showcases e projetos em conjunto são bem-vindos. Chame no direct.</p>
+          </div>
+        </div>
+
+        <form class="brief reveal" id="brief" novalidate>
+          <h3 data-en="Quick booking request">Pedido rápido de booking</h3>
+          <p class="brief__hint" data-en="Fill in the details: we put the message together, copy it, and open the agency's Instagram so you only need to paste it.">Preencha os dados: montamos a mensagem, copiamos para você e abrimos o Instagram da agência — é só colar.</p>
+          <label><span data-en="Event">Evento</span><input name="evento" required autocomplete="off"></label>
+          <div class="brief__row">
+            <label><span data-en="City">Cidade</span><input name="cidade" required autocomplete="address-level2"></label>
+            <label><span data-en="Date">Data</span><input name="data" type="date" required></label>
+          </div>
+          <div class="brief__row">
+            <label><span data-en="Format">Formato</span>
+              <select name="formato">
+                <option>Festival</option><option>Open air</option><option>Club night</option><option>After</option><option>B2B / Collab</option>
+              </select>
+            </label>
+            <label><span data-en="Your name">Seu nome</span><input name="nome" required autocomplete="name"></label>
+          </div>
+          <label><span data-en="Message (optional)">Mensagem (opcional)</span><textarea name="msg" rows="3"></textarea></label>
+          <button class="btn btn--gold btn--full" type="submit" data-en="Copy request &amp; open Instagram">Copiar pedido e abrir Instagram</button>
+          <p class="brief__status" id="briefStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- PRESS KIT -->
+    <section class="section presskit" id="presskit">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-en="06 — Press kit">06 — Press kit</p>
+        <h2 class="h2 reveal"><span data-en="Material for">Material para</span> <em class="serif uv" data-en="flyers &amp; press.">flyers &amp; imprensa.</em></h2>
+      </div>
+      <ul class="kit">
+        <li class="reveal"><a href="assets/press/astralix-logo-branco.png" download><span class="kit__thumb kit__thumb--logo"><img src="assets/img/astralix-logo.png" alt="" loading="lazy"></span><span class="kit__name">Logo Astralix</span><span class="kit__type">PNG · transparente</span></a></li>
+        <li class="reveal"><a href="assets/press/astralix-sigilo.png" download><span class="kit__thumb"><img src="assets/img/astralix-sigilo.webp" alt="" loading="lazy"></span><span class="kit__name" data-en="Sigil">Sigilo</span><span class="kit__type">PNG · 720px</span></a></li>
+        <li class="reveal"><a href="assets/press/astralix-foto-1.jpg" download><span class="kit__thumb"><img src="assets/img/astralix-retrato.jpg" alt="" loading="lazy"></span><span class="kit__name" data-en="Photo · portrait">Foto · retrato</span><span class="kit__type">JPG</span></a></li>
+        <li class="reveal"><a href="assets/press/astralix-foto-2.jpg" download><span class="kit__thumb"><img src="assets/img/gallery/dj-bracos.jpg" alt="" loading="lazy" width="720" height="1280"></span><span class="kit__name" data-en="Photo · live (day)">Foto · ao vivo (dia)</span><span class="kit__type">JPG</span></a></li>
+        <li class="reveal"><a href="assets/press/astralix-foto-3.jpg" download><span class="kit__thumb"><img src="assets/img/gallery/dj-uv.jpg" alt="" loading="lazy" width="720" height="1280"></span><span class="kit__name" data-en="Photo · live (UV)">Foto · ao vivo (UV)</span><span class="kit__type">JPG</span></a></li>
+        <li class="reveal"><button type="button" id="copyBio"><span class="kit__thumb kit__thumb--text">Aa</span><span class="kit__name" data-en="Short bio">Bio curta</span><span class="kit__type" data-en="click to copy">clique para copiar</span></button></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/img/astralix-sigilo.webp" alt="" class="footer__sigil" loading="lazy">
+    <img src="assets/img/astralix-logo.png" alt="Astralix" class="footer__logo" loading="lazy">
+    <p class="serif footer__line" data-en="See you on the dancefloor.">Nos vemos na pista.</p>
+    <div class="footer__links">
+      <a href="https://instagram.com/djastralix" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://instagram.com/echoesofgaia__" target="_blank" rel="noopener">Echoes of Gaia</a>
+      <a href="#booking">Booking</a>
+    </div>
+    <p class="footer__small">© <span id="year">2026</span> Astralix · Caique Souza · São Paulo, BR</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada" hidden>
+    <button class="lightbox__close" type="button" aria-label="Fechar">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Anterior">‹</button>
+    <img alt="">
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Próxima">›</button>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
