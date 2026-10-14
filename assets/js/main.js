@@ -12,14 +12,21 @@
      Trilha: Avalon & Volcano — Good Twist.
      Para trocar, substitua o arquivo em assets/audio/ e ajuste MUSIC_SRC. */
   const MUSIC_SRC = "assets/audio/good-twist.mp3";
+  const MUSIC_START = 218.7; // 3:38.7 — subida do breakdown, 8 s antes do drop (3:46.7)
   const MUSIC_VOLUME = 0.7; // 0–1
   const FADE_MS = 1400;
   const soundBtn = $("#soundBtn");
   const music = (() => {
     const audio = new Audio(MUSIC_SRC);
-    audio.loop = true;
     audio.preload = "none";
-    let ctx = null, gain = null, wanted = false, ducked = false, pauseTimer = 0, raf = 0;
+    let ctx = null, gain = null, wanted = false, ducked = false, pauseTimer = 0, raf = 0, fromStart = false;
+    const seekStart = () => {
+      const go = () => { try { audio.currentTime = MUSIC_START; } catch { /* sem metadados ainda */ } };
+      if (audio.readyState >= 1) go();
+      else audio.addEventListener("loadedmetadata", go, { once: true });
+    };
+    // ao terminar, volta para antes do drop em vez do começo da faixa
+    audio.addEventListener("ended", () => { seekStart(); audio.play().catch(() => {}); });
 
     // Web Audio permite fade também no iOS, onde audio.volume é somente leitura
     const setupGraph = () => {
@@ -55,6 +62,7 @@
       clearTimeout(pauseTimer);
       if (wanted && !ducked) {
         if (!gain && audio.paused) audio.volume = 0;
+        if (fromStart) { fromStart = false; seekStart(); }
         ctx?.resume();
         audio.play().then(() => ramp(MUSIC_VOLUME)).catch(() => {
           wanted = false;
@@ -67,8 +75,9 @@
     };
     return {
       // chamados a partir de um clique, então o navegador libera o áudio
-      start() { setupGraph(); wanted = true; sync(); },
-      toggle() { setupGraph(); wanted = !wanted; sync(); },
+      // sempre que a música é iniciada (entrada ou botão de som), começa antes do drop
+      start() { setupGraph(); wanted = true; fromStart = true; sync(); },
+      toggle() { setupGraph(); wanted = !wanted; fromStart = wanted; sync(); },
       duck(on) { if (ducked !== on) { ducked = on; sync(); } },
     };
   })();
